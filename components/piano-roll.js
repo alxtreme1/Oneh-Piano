@@ -64,8 +64,9 @@ export default function() {
         autoSliding == true ? setSliderValue(newSliderValue) : console.log(nativeEvent.x);
     };
     
-    const notes1 = ['c3', 'db3', 'd3', 'eb3', 'e3', 'f3', 'gb3', 'g3', 'ab3', 'a3', 'bb3', 'b3'];
-    const notes2 = ['c5', 'db5', 'd5', 'eb5', 'e5', 'f5', 'gb5', 'g5', 'ab5', 'a5', 'bb5', 'b5'];
+    const notes2 = ['c2', 'db2', 'd2', 'eb2', 'e2', 'f2', 'gb2', 'g2', 'ab2', 'a2', 'bb2', 'b2'];
+    const notes3 = ['c3', 'db3', 'd3', 'eb3', 'e3', 'f3', 'gb3', 'g3', 'ab3', 'a3', 'bb3', 'b3'];
+    const notes4 = ['c4', 'db4', 'd4', 'eb4', 'e4', 'f4', 'gb4', 'g4', 'ab4', 'a4', 'bb4', 'b4'];
     return(
         <SoundPlayersProvider>
             <ScrollView
@@ -79,11 +80,11 @@ export default function() {
                     <View
                         style={ styles.pianoRoll }
                         onLayout={ handlePianoLayout } >
-                        <PadTrack speed={0.25} pad={1} notes={notes1} />
-                        <PadTrack speed={0.5} pad={2} notes={notes1} />
-                        <PadTrack speed={1} pad={3} notes={notes1} />
-                        <PadTrack speed={1} pad={4} notes={notes2} />
-                        <PadTrack speed={2} pad={5} notes={notes2} />
+                        <PadTrack speed={0.5} pad={1} notes={notes2} />
+                        <PadTrack speed={1} pad={2} notes={notes2} />
+                        <PadTrack speed={1} pad={3} notes={notes3} />
+                        <PadTrack speed={1} pad={4} notes={notes4} />
+                        <PadTrack speed={2} pad={5} notes={notes4} />
                     </View>
                 </PanGestureHandler>
             </ScrollView>

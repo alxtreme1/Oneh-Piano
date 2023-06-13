@@ -12,14 +12,8 @@ export default function Tile(props) {
     const { playNote, stopNote, tilesRefs } = useContext(SoundPlayersContext);
     const keyNote = props.keyNote;
 
-    const handlePlay = (e) => {
-      const state = e.nativeEvent.state;
-      console.log(state);
-      if(state == 2)
-        playNote(keyNote, props.speed)
-      else if(state == 5 || state == 3) {
-        handleStop();
-      }
+    const handlePlay = () => {
+      playNote(keyNote, props.speed);
     };
 
     const handleStop = () => {

@@ -11,6 +11,19 @@ const SoundPlayersProvider = ({ children }) => {
   useEffect(() => {
       const loadSoundPlayers = () => {
         const soundPlayerPromises = {
+          "c2": new Sound(require('../android/app/src/main/res/raw/audio/c2.mp3')),
+          "db2": new Sound(require('../android/app/src/main/res/raw/audio/db2.mp3')),
+          "d2": new Sound(require('../android/app/src/main/res/raw/audio/d2.mp3')),
+          "eb2": new Sound(require('../android/app/src/main/res/raw/audio/eb2.mp3')),
+          "e2": new Sound(require('../android/app/src/main/res/raw/audio/e2.mp3')),
+          "f2": new Sound(require('../android/app/src/main/res/raw/audio/f2.mp3')),
+          "gb2": new Sound(require('../android/app/src/main/res/raw/audio/gb2.mp3')),
+          "g2": new Sound(require('../android/app/src/main/res/raw/audio/g2.mp3')),
+          "ab2": new Sound(require('../android/app/src/main/res/raw/audio/ab2.mp3')),
+          "a2": new Sound(require('../android/app/src/main/res/raw/audio/a2.mp3')),
+          "bb2": new Sound(require('../android/app/src/main/res/raw/audio/bb2.mp3')),
+          "b2": new Sound(require('../android/app/src/main/res/raw/audio/b2.mp3')),
+
           "c3": new Sound(require('../android/app/src/main/res/raw/audio/c3.mp3')),
           "db3": new Sound(require('../android/app/src/main/res/raw/audio/db3.mp3')),
           "d3": new Sound(require('../android/app/src/main/res/raw/audio/d3.mp3')),
@@ -23,18 +36,19 @@ const SoundPlayersProvider = ({ children }) => {
           "a3": new Sound(require('../android/app/src/main/res/raw/audio/a3.mp3')),
           "bb3": new Sound(require('../android/app/src/main/res/raw/audio/bb3.mp3')),
           "b3": new Sound(require('../android/app/src/main/res/raw/audio/b3.mp3')),
-          "c5": new Sound(require('../android/app/src/main/res/raw/audio/c5.mp3')),
-          "db5": new Sound(require('../android/app/src/main/res/raw/audio/db5.mp3')),
-          "d5": new Sound(require('../android/app/src/main/res/raw/audio/d5.mp3')),
-          "eb5": new Sound(require('../android/app/src/main/res/raw/audio/eb5.mp3')),
-          "e5": new Sound(require('../android/app/src/main/res/raw/audio/e5.mp3')),
-          "f5": new Sound(require('../android/app/src/main/res/raw/audio/f5.mp3')),
-          "gb5": new Sound(require('../android/app/src/main/res/raw/audio/gb5.mp3')),
-          "g5": new Sound(require('../android/app/src/main/res/raw/audio/g5.mp3')),
-          "ab5": new Sound(require('../android/app/src/main/res/raw/audio/ab5.mp3')),
-          "a5": new Sound(require('../android/app/src/main/res/raw/audio/a5.mp3')),
-          "bb5": new Sound(require('../android/app/src/main/res/raw/audio/bb5.mp3')),
-          "b5": new Sound(require('../android/app/src/main/res/raw/audio/b5.mp3'))
+
+          "c4": new Sound(require('../android/app/src/main/res/raw/audio/c4.mp3')),
+          "db4": new Sound(require('../android/app/src/main/res/raw/audio/db4.mp3')),
+          "d4": new Sound(require('../android/app/src/main/res/raw/audio/d4.mp3')),
+          "eb4": new Sound(require('../android/app/src/main/res/raw/audio/eb4.mp3')),
+          "e4": new Sound(require('../android/app/src/main/res/raw/audio/e4.mp3')),
+          "f4": new Sound(require('../android/app/src/main/res/raw/audio/f4.mp3')),
+          "gb4": new Sound(require('../android/app/src/main/res/raw/audio/gb4.mp3')),
+          "g4": new Sound(require('../android/app/src/main/res/raw/audio/g4.mp3')),
+          "ab4": new Sound(require('../android/app/src/main/res/raw/audio/ab4.mp3')),
+          "a4": new Sound(require('../android/app/src/main/res/raw/audio/a4.mp3')),
+          "bb4": new Sound(require('../android/app/src/main/res/raw/audio/bb4.mp3')),
+          "b4": new Sound(require('../android/app/src/main/res/raw/audio/b4.mp3'))
         };
 
         const loadedSoundPlayers = {};
