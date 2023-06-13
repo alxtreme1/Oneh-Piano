@@ -1,12 +1,11 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useRef} from 'react';
 import {
   StyleSheet,
   View
 } from 'react-native';
 import PianoRoll from './piano-roll';
 import Slider from './scroll-bar';
-import { CameraTargetContextProvider } from '../context/piano-track-context';
-import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 
 const styles = StyleSheet.create({
     container: {
@@ -19,16 +18,12 @@ const styles = StyleSheet.create({
 
 export default function PianoUI(){
 
-    return(
-        <CameraTargetContextProvider>
-            <GestureHandlerRootView style={{ flex: 1 }}>
-                <PanGestureHandler>
-                    <View style={styles.container}>
-                        <Slider/>
-                        <PianoRoll/>
-                    </View>
-                </PanGestureHandler>
-            </GestureHandlerRootView>
-        </CameraTargetContextProvider>
-    );
+  return(
+    <GestureHandlerRootView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <Slider/>
+          <PianoRoll/>
+        </View>
+    </GestureHandlerRootView>
+  );
 }

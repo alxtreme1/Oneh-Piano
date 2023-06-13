@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from 'react';
+import React, { useRef, useContext, useEffect, useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -8,6 +8,8 @@ import {
 import PadTrack from './pad-track';
 import { CameraTargetContext } from '../context/piano-track-context';
 import { SoundPlayersProvider } from '../context/sounds-context';
+// import { IOScrollView, InView } from 'react-native-intersection-observer'
+import { GestureHandlerRootView, PanGestureHandler, GestureDetector, Gesture } from 'react-native-gesture-handler'
 
 const styles = StyleSheet.create({
     pianoRoll: {
@@ -19,11 +21,11 @@ const styles = StyleSheet.create({
 });
 
 export default function() {
-    const { sliderValue } = useContext(CameraTargetContext);
+    const { sliderValue, setSliderValue } = useContext(CameraTargetContext);
     const { setCameraTarget } = useContext(CameraTargetContext);
     const { pianoWidth, setPianoWidth}  = useContext(CameraTargetContext);
     const { sliderWidth } = useContext(CameraTargetContext);
-    const { setThumbWidth } = useContext(CameraTargetContext);
+    const { thumbWidth, setThumbWidth } = useContext(CameraTargetContext);
     const { setMaximumValue } = useContext(CameraTargetContext);
     
     const scrollViewRef = useRef(null);
@@ -50,7 +52,20 @@ export default function() {
         scrollViewRef.current.scrollTo({ x: sliderValue * pianoWidth, animated: false });
     }, [sliderValue]);
 
+    const autoSliding = useState(false);
+    
+    const handlePanGesture = (e) => {
+        const { nativeEvent } = e;
+        const widthUnit = pianoWidth / 5;
+        const xPos = nativeEvent.absoluteX;
 
+        const newSliderValue = (xPos - thumbWidth / 2) / sliderWidth;
+
+        autoSliding == true ? setSliderValue(newSliderValue) : console.log(nativeEvent.x);
+    };
+    
+    const notes1 = ['c3', 'db3', 'd3', 'eb3', 'e3', 'f3', 'gb3', 'g3', 'ab3', 'a3', 'bb3', 'b3'];
+    const notes2 = ['c5', 'db5', 'd5', 'eb5', 'e5', 'f5', 'gb5', 'g5', 'ab5', 'a5', 'bb5', 'b5'];
     return(
         <SoundPlayersProvider>
             <ScrollView
@@ -60,15 +75,17 @@ export default function() {
                 scrollEnabled={false}
                 onLayout={ handleScrollLayout }
                 > 
-                <View
-                    style={ styles.pianoRoll }
-                    onLayout={ handlePianoLayout }>
-                    <PadTrack speed={0.25} pad={1}/>
-                    <PadTrack speed={0.5} pad={2}/>
-                    <PadTrack speed={1} pad={3}/>
-                    <PadTrack speed={2} pad={4}/>
-                    <PadTrack speed={4} pad={5}/>
-                </View>
+                <PanGestureHandler onGestureEvent={handlePanGesture}>
+                    <View
+                        style={ styles.pianoRoll }
+                        onLayout={ handlePianoLayout } >
+                        <PadTrack speed={0.25} pad={1} notes={notes1} />
+                        <PadTrack speed={0.5} pad={2} notes={notes1} />
+                        <PadTrack speed={1} pad={3} notes={notes1} />
+                        <PadTrack speed={1} pad={4} notes={notes2} />
+                        <PadTrack speed={2} pad={5} notes={notes2} />
+                    </View>
+                </PanGestureHandler>
             </ScrollView>
         </SoundPlayersProvider>
     );

@@ -2,41 +2,33 @@ import React, { useContext } from 'react';
 import {
   View,
 } from 'react-native';
-import SoundPlayer from './audio-player';
 import newStyles from '../styles/tiles-style';
 import { SoundPlayersContext } from '../context/sounds-context';
-import { Player } from '@react-native-community/audio-toolkit';
-import Sound from 'react-native-sound';
+import { TapGestureHandler } from 'react-native-gesture-handler';
 
 
 export default function Tile(props) {
     const styles = newStyles(props.marginOffset);
-    const { soundPlayers } = useContext(SoundPlayersContext);
-    const player = soundPlayers[props.keyNote];
+    const { playNote, stopNote, tilesRefs } = useContext(SoundPlayersContext);
+    const keyNote = props.keyNote;
 
-    const setSpeed = async () => {
-      await player.setSpeed(props.speed);
-    }
-
-    const setPitch = async () => {
-      await player.setPitch(props.speed);
-    }
-
-    const handlePlay = () => {
-      setSpeed();
-      setPitch();
-      player.setCurrentTime(0);
-      player.play();
+    const handlePlay = (e) => {
+      const state = e.nativeEvent.state;
+      console.log(state);
+      if(state == 2)
+        playNote(keyNote, props.speed)
+      else if(state == 5 || state == 3) {
+        handleStop();
+      }
     };
 
     const handleStop = () => {
-        // player.stop();
+        // stopNote(keyNote);
     };
 
     return(
-        <View
-            style={props.marginOffset != null ? styles.blackPianoTile : styles.whitePianoTile} 
-            onTouchStart={ handlePlay } 
-            onTouchEnd={ handleStop } />
+      <TapGestureHandler onBegan={handlePlay} onEnded={handleStop}>
+        <View style={props.marginOffset != null ? styles.blackPianoTile : styles.whitePianoTile} />
+      </TapGestureHandler>
     );
 }
